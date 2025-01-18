@@ -68,7 +68,7 @@ export default function Home() {
           onClick={handleNext}
           className={`w-full p-2 rounded ${
             !selectedMake || !selectedYear
-              ? 'bg-gray-300 cursor-not-allowed'
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
               : 'bg-blue-500 hover:bg-blue-600 text-white'
           }`}
           disabled={!selectedMake || !selectedYear}
