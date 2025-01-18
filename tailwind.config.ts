@@ -57,6 +57,15 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		animation: {
+			slideIn: 'slideIn 0.4s ease-out forwards',
+		  },
+		  keyframes: {
+			slideIn: {
+			  '0%': { transform: 'translateY(50%)', opacity: '0' },
+			  '100%': { transform: 'translateY(0)', opacity: '1' },
+			},
+		  },
   	}
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports

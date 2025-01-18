@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useEffect } from 'react';
 
 interface Model {
   Make_ID: number
@@ -56,7 +57,7 @@ const ModelsList = ({ makeId, year }: { makeId: string, year: string }) => {
   return (
     <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {models.map((model) => (
-        <Card key={model.Model_ID} className="p-4">
+        <Card key={model.Model_ID} className="p-4 opacity-0 animate-slideIn">
           <h4 className="text-sm font-semibold leading-none">{model.Model_Name}</h4>
           <Separator className="my-4" />
           <div className="flex h-5 items-center space-x-4 text-sm">
@@ -74,12 +75,18 @@ export default function ResultPage() {
   const router = useRouter();
   const { makeId, year } = router.query;
 
+  const [showPageContent, setShowPageContent] = React.useState(false);
+
+  useEffect(() => {
+    setShowPageContent(true);
+  }, []);
+
   if (!makeId || !year) {
     return <div>Loading...</div>;
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main className={`min-h-screen bg-gray-50 p-8 transition-all duration-1000 ${showPageContent ? 'opacity-100' : 'opacity-0'}`}>
       <div className="container mx-auto">
         <div className="text-center flex flex-row gap-8">
           <Button asChild variant="default" size="lg">
