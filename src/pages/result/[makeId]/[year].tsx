@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Car } from 'lucide-react';
 
 interface Model {
   Make_ID: number
@@ -54,10 +55,15 @@ const ModelsList = ({ makeId, year }: { makeId: string, year: string }) => {
   }
 
   return (
-    <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
       {models.map((model, index) => (
         <Card key={model.Model_ID} className={`p-4 opacity-0 animate-slideIn`} style={{ animationDelay: `${index * 0.1}s` }}>
+          <div className='flex flex-row items-center justify-between'>
           <h4 className="text-sm font-semibold leading-none">{model.Model_Name}</h4>
+          <div className='bg-orange-100 p-2 rounded-xl'>
+            <Car size={28} strokeWidth={1.75} color="#e34d0d" />
+          </div>
+          </div>
           <Separator className="my-4" />
           <div className="flex h-5 items-center space-x-4 text-sm">
             <p className="text-gray-500">{model.Make_Name}</p>
