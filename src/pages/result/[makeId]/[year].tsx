@@ -4,6 +4,8 @@ import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator"
+
 
 interface Model {
   Make_ID: number
@@ -67,9 +69,14 @@ export default function ResultPage() {
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {models.map((model) => (
             <Card key={model.Model_ID} className="p-4">
-              <h3 className="text-xl font-semibold">{model.Model_Name}</h3>
-              <p className="text-gray-500">Make: {model.Make_Name}</p>
-              <p className="text-gray-500">Model ID: {model.Model_ID}</p>
+              <h4 className="text-sm font-semibold leading-none">{model.Model_Name}</h4>
+              <Separator className="my-4"/>
+              <div className="flex h-5 items-center space-x-4 text-sm">
+                <p className="text-gray-500">{model.Make_Name}</p>
+                <Separator orientation="vertical" />
+                <p className="text-gray-500">Model ID: {model.Model_ID}</p>
+
+              </div>
             </Card>
           ))}
         </div>
