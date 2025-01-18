@@ -6,7 +6,7 @@ import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Car } from 'lucide-react'
+import { ArrowLeft, Car } from 'lucide-react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
 interface Model {
@@ -21,11 +21,19 @@ interface ResultPageProps {
 }
 
 async function fetchModels(makeId: string, year: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
-  );
-  const data = await res.json();
-  return data.Results;
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch models");
+    }
+    const data = await res.json();
+    return data.Results || [];  // Fallback to empty array if no results
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 //Initially I didn't need to use getStaticPaths, but how it was required, I'm using the getStaticPaths instead of generateStaticParams (once I'm using the pages form and not the app router one)
@@ -46,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<ResultPageProps> = async ({ params }) => {
-  if (!params?.makeId || !params?.year) {
+  if (!params || !params.makeId || !params.year) {
     return { notFound: true };
   }
 
@@ -56,7 +64,8 @@ export const getStaticProps: GetStaticProps<ResultPageProps> = async ({ params }
       props: { models },
       revalidate: 3600
     };
-  } catch {
+  } catch (error) {
+    console.error(error);
     return { notFound: true };
   }
 };
@@ -69,15 +78,25 @@ export default function ResultPage({ models }: ResultPageProps) {
 
   if (!mounted) return null;
 
+  if (!models.length) {
+    return (
+      <div className="flex justify-center items-center container mx-auto text-center bg-gray-50 max-h-auto h-screen">
+        <p>No models found for this make and year :(</p>
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-slate-100 p-8">
       <div className="container mx-auto space-y-8">
         <div className="flex items-center gap-8">
-          <Button asChild variant="default" size="lg">
-            <Link href="/">Back to Filter</Link>
+          <Button asChild variant="default" size="icon">
+            <Link href="/">
+              <ArrowLeft />
+            </Link>
           </Button>
-          <h1 className="text-4xl font-bold text-gray-800">
-            Vehicle Models in {year}
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
+            Vehicle models in {year}
           </h1>
         </div>
         
@@ -85,7 +104,7 @@ export default function ResultPage({ models }: ResultPageProps) {
           {models.map((model, index) => (
             <Card 
               key={model.Model_ID} 
-              className="p-4 opacity-0 animate-slideIn"
+              className="p-4 animate-fadeIn"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-center justify-between">
