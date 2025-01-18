@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useEffect } from 'react';
 
 interface Model {
   Make_ID: number
@@ -56,8 +55,8 @@ const ModelsList = ({ makeId, year }: { makeId: string, year: string }) => {
 
   return (
     <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {models.map((model) => (
-        <Card key={model.Model_ID} className="p-4 opacity-0 animate-slideIn">
+      {models.map((model, index) => (
+        <Card key={model.Model_ID} className={`p-4 opacity-0 animate-slideIn`} style={{ animationDelay: `${index * 0.1}s` }}>
           <h4 className="text-sm font-semibold leading-none">{model.Model_Name}</h4>
           <Separator className="my-4" />
           <div className="flex h-5 items-center space-x-4 text-sm">
@@ -89,10 +88,10 @@ export default function ResultPage() {
     <main className={`min-h-screen bg-gray-50 p-8 transition-all duration-1000 ${showPageContent ? 'opacity-100' : 'opacity-0'}`}>
       <div className="container mx-auto">
         <div className="text-center flex flex-row gap-8">
-          <Button asChild variant="default" size="lg">
+          <Button asChild variant="default" size="lg" className="opacity-0 animate-slideIn" style={{ animationDelay: '0.2s' }}>
             <Link href="/">Back to Filter</Link>
           </Button>
-          <h1 className="text-center text-4xl font-bold mb-6 text-gray-800">
+          <h1 className="text-center text-4xl font-bold mb-6 text-gray-800 opacity-0 animate-slideIn" style={{ animationDelay: '0.1s' }}>
             Vehicle Models in {year}
           </h1>
         </div>
