@@ -1,40 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Car Dealer App
 
-## Getting Started
+A Next.js application that allows users to explore vehicle makes and models by selecting a make and year. The app fetches data from an external API to display available vehicle information dynamically.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Dynamic routing to display results for selected vehicle makes and years.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Integration with NHTSA Vehicle API for fetching vehicle makes.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Interactive UI with dropdowns for make and year selection.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Fully responsive design.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Deploy
+- https://car-dealer-app-project.vercel.app/
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+Ensure you have the following installed:
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js (v16 or later recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Getting Started
 
-## Deploy on Vercel
+#### 1. Clone the Repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+git clone https://github.com/leticiaanobre/CarDealerApp.git
+cd car-dealer-app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+#### 2. Install Dependencies
+
+Run the following command to install all required dependencies:
+
+``` npm install ```
+
+or, if you prefer yarn:
+
+``` yarn install ```
+
+#### 3. Set Up Environment Variables
+
+Create a .env.local file in the root directory and add the following variables:
+
+``` NEXT_PUBLIC_API_BASE_URL=https://vpic.nhtsa.dot.gov/api ```
+
+#### 4. Start the Development Server
+
+Run the following command to start the development server:
+
+``` npm run dev ```
+
+or:
+
+``` yarn dev ```
+
+The application will be available at http://localhost:3000.
+
+### Project Structure
+
+.
+├── components
+│   └── ui                # Reusable UI components
+├── pages
+│   ├── index.tsx         # Home page
+│   └── result            # Dynamic result pages
+├── public                # Static assets
+├── styles                # Global styles
+├── .env.local            # Environment variables
+├── package.json          # Project dependencies and scripts
+└── README.md             # Project documentation
