@@ -58,7 +58,7 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		animation: {
-			slideIn: 'slideIn 0.4s ease-out forwards',
+			slideIn: 'slideIn 0.5s ease-out forwards',
 		  },
 		  keyframes: {
 			slideIn: {

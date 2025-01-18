@@ -85,7 +85,7 @@ export default function ResultPage() {
   }
 
   return (
-    <main className={`min-h-screen bg-gray-50 p-8 transition-all duration-1000 ${showPageContent ? 'opacity-100' : 'opacity-0'}`}>
+    <main className={`min-h-screen bg-slate-100 p-8 transition-all duration-1000 ${showPageContent ? 'opacity-100' : 'opacity-0'}`}>
       <div className="container mx-auto">
         <div className="text-center flex flex-row gap-8">
           <Button asChild variant="default" size="lg" className="opacity-0 animate-slideIn" style={{ animationDelay: '0.2s' }}>

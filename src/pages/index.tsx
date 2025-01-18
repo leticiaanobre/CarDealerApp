@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectGroup } from '@/components/ui/select'
 import { Badge } from "@/components/ui/badge"
 
-
 interface Make {
   MakeId: number
   MakeName: string
@@ -30,11 +29,21 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient">
-      <Badge variant="softdestructive">Find the one that fits your perfect journey</Badge>
-      <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl mt-4">Explore a world of vehicles and discover your perfect ride</h1>
-      <p className='text-gray-600 text-center text-md'>Select a make vehicle and a year to begin</p>
-      <div className="w-full max-w-xs space-y-4">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 animate-slideIn">
+      <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.1s' }}>
+        <Badge variant="softdestructive">Find the one that fits your perfect journey</Badge>
+      </div>
+      <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.3s' }}>
+        <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl mt-4">
+          Explore a world of vehicles and discover your perfect ride
+        </h1>
+      </div>
+      <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.5s' }}>
+        <p className='text-gray-600 text-center text-md'>
+          Select a make vehicle and a year to begin
+        </p>
+      </div>
+      <div className="w-full max-w-xs space-y-4 opacity-0 animate-slideIn" style={{ animationDelay: '0.7s' }}>
         <div className='flex flex-row items-center justify-between gap-4'>
           <Select value={selectedMake} onValueChange={setSelectedMake}>
             <SelectGroup className='w-full'>
@@ -74,9 +83,10 @@ export default function Home() {
           className={`w-full p-2 rounded ${
             !selectedMake || !selectedYear
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-gray-950 hover:bg-gray-900 trabsition-all duration-300 ease-in-out text-white'
-          }`}
+              : 'bg-gray-950 hover:bg-gray-900 transition-all duration-300 ease-in-out text-white'
+          } opacity-0 animate-slideIn`}
           disabled={!selectedMake || !selectedYear}
+          style={{ animationDelay: '0.5s' }}
         >
           Next
         </button>
