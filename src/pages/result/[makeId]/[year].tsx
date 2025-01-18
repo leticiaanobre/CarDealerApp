@@ -22,7 +22,7 @@ interface ResultPageProps {
 
 async function fetchModels(makeId: string, year: string) {
   const res = await fetch(
-    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
   );
   const data = await res.json();
   return data.Results;
@@ -30,7 +30,7 @@ async function fetchModels(makeId: string, year: string) {
 
 //Initially I didn't need to use getStaticPaths, but how it was required, I'm using the getStaticPaths instead of generateStaticParams (once I'm using the pages form and not the app router one)
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/vehicles/GetMakesForVehicleType/car?format=json`);
   const { Results: makes } = await res.json();
   
   const currentYear = new Date().getFullYear();
