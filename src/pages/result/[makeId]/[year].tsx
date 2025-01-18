@@ -63,9 +63,14 @@ export default function ResultPage() {
   return (
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="container mx-auto">
+      <div className=" text-center flex flex-row gap-8">
+          <Button asChild variant="default" size="lg">
+            <Link href="/">Back to Filter</Link>
+          </Button>
         <h1 className="text-center text-4xl font-bold mb-6 text-gray-800">
           Vehicle Models in {year}
         </h1>
+        </div>
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {models.map((model) => (
             <Card key={model.Model_ID} className="p-4">
@@ -79,11 +84,6 @@ export default function ResultPage() {
               </div>
             </Card>
           ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Button asChild variant="link" size="lg">
-            <Link href="/">Back to Filter</Link>
-          </Button>
         </div>
       </div>
     </main>

@@ -74,7 +74,7 @@ export default function Home() {
           className={`w-full p-2 rounded ${
             !selectedMake || !selectedYear
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
+              : 'bg-gray-950 hover:bg-gray-900 trabsition-all duration-300 ease-in-out text-white'
           }`}
           disabled={!selectedMake || !selectedYear}
         >
