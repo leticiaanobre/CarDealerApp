@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectGroup } from '@/components/ui/select'
 
 interface Make {
   MakeId: number
@@ -30,30 +31,39 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-4xl font-bold mb-8">Vehicle Filter</h1>
       <div className="w-full max-w-xs space-y-4">
-        <select
-          className="w-full p-2 border rounded"
-          value={selectedMake}
-          onChange={(e) => setSelectedMake(e.target.value)}
-        >
-          <option value="">Select Make</option>
-          {makes.map((make) => (
-            <option key={make.MakeId} value={make.MakeId}>
-              {make.MakeName}
-            </option>
-          ))}
-        </select>
-        <select
-          className="w-full p-2 border rounded"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
-        >
-          <option value="">Select Year</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+        <Select value={selectedMake} onValueChange={setSelectedMake}>
+          <SelectGroup>
+            <SelectLabel className="text-sm font-semibold text-gray-700">Make</SelectLabel>
+            <SelectTrigger className="w-full p-2 border rounded">
+              <span>{selectedMake || "Select Make"}</span>
+            </SelectTrigger>
+            <SelectContent>
+              {makes.map((make) => (
+                <SelectItem key={make.MakeId} value={make.MakeId.toString()}>
+                  {make.MakeName}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </SelectGroup>
+        </Select>
+
+        <Select value={selectedYear} onValueChange={setSelectedYear}>
+          <SelectGroup>
+            <SelectLabel className="text-sm font-semibold text-gray-700">Year</SelectLabel>
+            <SelectTrigger className="w-full p-2 border rounded">
+              <span>{selectedYear || "Select Year"}</span>
+            </SelectTrigger>
+            <SelectContent>
+              {years.map((year) => (
+                <SelectItem key={year} value={year}>
+                  {year}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </SelectGroup>
+        </Select>
+
+
         <button
           onClick={handleNext}
           className={`w-full p-2 rounded ${
@@ -69,4 +79,3 @@ export default function Home() {
     </main>
   )
 }
-
