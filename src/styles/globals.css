@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bgGradient: linear-gradient(to bottom, #a0c4f5 0%, #f2f2f2 100%)
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,4 +84,8 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.bg-gradient {
+  background: var(--bgGradient);
 }

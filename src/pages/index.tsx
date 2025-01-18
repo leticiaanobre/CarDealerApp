@@ -28,41 +28,42 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-8">Vehicle Filter</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient">
+      <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl">Explore a world of vehicles and discover your perfect ride</h1>
       <div className="w-full max-w-xs space-y-4">
-        <Select value={selectedMake} onValueChange={setSelectedMake}>
-          <SelectGroup>
-            <SelectLabel className="text-sm font-semibold text-gray-700">Make</SelectLabel>
-            <SelectTrigger className="w-full p-2 border rounded">
-              <span>{selectedMake || "Select Make"}</span>
-            </SelectTrigger>
-            <SelectContent>
-              {makes.map((make) => (
-                <SelectItem key={make.MakeId} value={make.MakeId.toString()}>
-                  {make.MakeName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectGroup>
-        </Select>
+        <div className='flex flex-row items-center justify-between gap-4'>
+          <Select value={selectedMake} onValueChange={setSelectedMake}>
+            <SelectGroup className='w-full'>
+              <SelectLabel className="text-sm font-semibold text-gray-700">Make</SelectLabel>
+              <SelectTrigger className="w-full p-2 border rounded">
+                <span>{selectedMake || "Select Make"}</span>
+              </SelectTrigger>
+              <SelectContent>
+                {makes.map((make) => (
+                  <SelectItem key={make.MakeId} value={make.MakeId.toString()}>
+                    {make.MakeName}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectGroup>
+          </Select>
 
-        <Select value={selectedYear} onValueChange={setSelectedYear}>
-          <SelectGroup>
-            <SelectLabel className="text-sm font-semibold text-gray-700">Year</SelectLabel>
-            <SelectTrigger className="w-full p-2 border rounded">
-              <span>{selectedYear || "Select Year"}</span>
-            </SelectTrigger>
-            <SelectContent>
-              {years.map((year) => (
-                <SelectItem key={year} value={year}>
-                  {year}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectGroup>
-        </Select>
-
+          <Select value={selectedYear} onValueChange={setSelectedYear}>
+            <SelectGroup className='w-full'>
+              <SelectLabel className="text-sm font-semibold text-gray-700">Year</SelectLabel>
+              <SelectTrigger className="w-full p-2 border rounded">
+                <span>{selectedYear || "Select Year"}</span>
+              </SelectTrigger>
+              <SelectContent>
+                {years.map((year) => (
+                  <SelectItem key={year} value={year}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectGroup>
+          </Select>
+        </div>
 
         <button
           onClick={handleNext}
