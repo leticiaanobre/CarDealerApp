@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectGroup } from '@/components/ui/select'
+import { Badge } from "@/components/ui/badge"
+
 
 interface Make {
   MakeId: number
@@ -29,7 +31,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient">
-      <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl">Explore a world of vehicles and discover your perfect ride</h1>
+      <Badge variant="softdestructive">Find the one that fits your perfect journey</Badge>
+      <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl mt-4">Explore a world of vehicles and discover your perfect ride</h1>
+      <p className='text-gray-600 text-center text-md'>Select a make vehicle and a year to begin</p>
       <div className="w-full max-w-xs space-y-4">
         <div className='flex flex-row items-center justify-between gap-4'>
           <Select value={selectedMake} onValueChange={setSelectedMake}>
