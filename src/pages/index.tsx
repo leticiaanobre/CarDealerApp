@@ -29,22 +29,22 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 animate-slideIn">
+    <main className="flex min-h-screen flex-col items-start md:items-center justify-center p-12 animate-slideIn">
       <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.1s' }}>
         <Badge variant="softdestructive">Find the one that fits your perfect journey</Badge>
       </div>
       <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.3s' }}>
-        <h1 className="text-5xl font-bold mb-4 text-center max-w-3xl mt-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-start md:text-center max-w-3xl mt-4">
           Explore a world of vehicles and discover your perfect ride
         </h1>
       </div>
       <div className="opacity-0 animate-slideIn" style={{ animationDelay: '0.5s' }}>
-        <p className='text-gray-600 text-center text-md'>
-          Select a make vehicle and a year to begin
+        <p className='text-gray-600 text-start md:text-center text-md'>
+          Select a make vehicle and a year to begin:
         </p>
       </div>
       <div className="w-full max-w-xs space-y-4 opacity-0 animate-slideIn" style={{ animationDelay: '0.7s' }}>
-        <div className='flex flex-row items-center justify-between gap-4'>
+        <div className='flex flex-row items-start md:items-center justify-between gap-4'>
           <Select value={selectedMake} onValueChange={setSelectedMake}>
             <SelectGroup className='w-full'>
               <SelectLabel className="text-sm font-semibold text-gray-700">Make</SelectLabel>

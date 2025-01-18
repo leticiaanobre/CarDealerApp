@@ -6,7 +6,7 @@ import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Car } from 'lucide-react'
+import { ArrowLeft, Car } from 'lucide-react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
 interface Model {
@@ -73,11 +73,13 @@ export default function ResultPage({ models }: ResultPageProps) {
     <main className="min-h-screen bg-slate-100 p-8">
       <div className="container mx-auto space-y-8">
         <div className="flex items-center gap-8">
-          <Button asChild variant="default" size="lg">
-            <Link href="/">Back to Filter</Link>
+          <Button asChild variant="default" size="icon">
+            <Link href="/">
+            <ArrowLeft />
+            </Link>
           </Button>
-          <h1 className="text-4xl font-bold text-gray-800">
-            Vehicle Models in {year}
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
+            Vehicle models in {year}
           </h1>
         </div>
         
